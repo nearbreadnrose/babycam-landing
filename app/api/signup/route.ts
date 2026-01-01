@@ -44,13 +44,28 @@ export async function POST(request: NextRequest) {
     })
 
     // Google Sheets API 인증
-    const auth = new google.auth.GoogleAuth({
-      credentials: {
-        client_email: serviceAccountEmail,
-        private_key: privateKey.replace(/\\n/g, '\n'),
-      },
-      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-    })
+    let auth
+    try {
+      // private_key의 \n 처리
+      const formattedPrivateKey = privateKey.replace(/\\n/g, '\n')
+      
+      auth = new google.auth.GoogleAuth({
+        credentials: {
+          client_email: serviceAccountEmail,
+          private_key: formattedPrivateKey,
+        },
+        scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+      })
+    } catch (authError) {
+      console.error('인증 설정 오류:', authError)
+      return NextResponse.json(
+        { 
+          error: '인증 설정 중 오류가 발생했습니다.',
+          details: authError instanceof Error ? authError.message : String(authError)
+        },
+        { status: 500 }
+      )
+    }
 
     const sheets = google.sheets({ version: 'v4', auth })
 
@@ -100,11 +115,15 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('예상치 못한 오류:', error)
     const errorMessage = error instanceof Error ? error.message : String(error)
+    const errorStack = error instanceof Error ? error.stack : undefined
+    
+    console.error('오류 스택:', errorStack)
     
     return NextResponse.json(
       { 
         error: '신청 처리 중 오류가 발생했습니다.',
-        details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
+        details: errorMessage,
+        stack: process.env.NODE_ENV === 'development' ? errorStack : undefined
       },
       { status: 500 }
     )
