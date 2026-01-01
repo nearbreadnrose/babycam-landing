@@ -68,8 +68,8 @@ export default function MainHero() {
             </div>
             <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-xl border-2 border-primary-200">
               <div>
-                <p className="font-bold text-gray-800">1,234명의 부모님들이</p>
-                <p className="text-sm text-gray-600">이미 사용 중입니다</p>
+                <p className="font-bold text-gray-800">이미 1500여명의 부모님들이</p>
+                <p className="text-sm text-gray-600">사용 중입니다</p>
               </div>
             </div>
           </div>
