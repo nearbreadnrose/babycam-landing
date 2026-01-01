@@ -131,7 +131,7 @@ export default function Signup() {
                 id="babycamType"
                 value={babycamType}
                 onChange={(e) => setBabycamType(e.target.value)}
-                placeholder="예: 아이나비, 아이온, 아이시스 등"
+                placeholder="예: 헤이홈, 이글루캠, 샤오미캠 등"
                 required
                 className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-lg"
               />

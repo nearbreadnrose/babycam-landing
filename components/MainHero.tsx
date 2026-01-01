@@ -58,11 +58,7 @@ export default function MainHero() {
                 className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-bold py-5 px-10 rounded-full text-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2"
               >
                 <span>✨</span>
-                <span>무료로 시작하기</span>
-              </button>
-              <button className="border-2 border-primary-500 text-primary-600 hover:bg-primary-50 font-bold py-5 px-10 rounded-full text-lg transition-all flex items-center justify-center gap-2">
-                <span>▶️</span>
-                <span>서비스 보기</span>
+                <span>서비스 신청하기</span>
               </button>
             </div>
           </div>
