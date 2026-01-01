@@ -3,11 +3,18 @@ import { google } from 'googleapis'
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, phone } = await request.json()
+    const { email, phone, babycamType } = await request.json()
 
     if (!email) {
       return NextResponse.json(
         { error: '이메일은 필수입니다.' },
+        { status: 400 }
+      )
+    }
+
+    if (!babycamType) {
+      return NextResponse.json(
+        { error: '베이비캠 종류는 필수입니다.' },
         { status: 400 }
       )
     }
@@ -81,14 +88,14 @@ export async function POST(request: NextRequest) {
       
       await sheets.spreadsheets.values.append({
         spreadsheetId,
-        range: `${sheetName}!A:C`, // A열: 이메일, B열: 전화번호, C열: 신청일시
+        range: `${sheetName}!A:D`, // A열: 이메일, B열: 전화번호, C열: 베이비캠 종류, D열: 신청일시
         valueInputOption: 'USER_ENTERED',
         requestBody: {
-          values: [[email, phone || '', dateStr]],
+          values: [[email, phone || '', babycamType, dateStr]],
         },
       })
 
-      console.log('✅ Google Sheets에 데이터 추가 성공:', { email, phone, dateStr })
+      console.log('✅ Google Sheets에 데이터 추가 성공:', { email, phone, babycamType, dateStr })
 
       return NextResponse.json(
         { message: '신청이 완료되었습니다!' },

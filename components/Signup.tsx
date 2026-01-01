@@ -5,6 +5,7 @@ import { useState } from 'react'
 export default function Signup() {
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
+  const [babycamType, setBabycamType] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -20,7 +21,7 @@ export default function Signup() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, phone }),
+        body: JSON.stringify({ email, phone, babycamType }),
       })
 
       const data = await response.json()
@@ -117,6 +118,28 @@ export default function Signup() {
                 placeholder="010-1234-5678"
                 className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-lg"
               />
+            </div>
+            <div>
+              <label htmlFor="babycamType" className="block text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                <span>📹</span>
+                <span>베이비캠 종류</span>
+                <span className="text-primary-600">*</span>
+              </label>
+              <select
+                id="babycamType"
+                value={babycamType}
+                onChange={(e) => setBabycamType(e.target.value)}
+                required
+                className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-lg bg-white"
+              >
+                <option value="">베이비캠 종류를 선택해주세요</option>
+                <option value="아이나비">아이나비</option>
+                <option value="아이온">아이온</option>
+                <option value="아이시스">아이시스</option>
+                <option value="아이캠">아이캠</option>
+                <option value="아이뷰">아이뷰</option>
+                <option value="기타">기타</option>
+              </select>
             </div>
           </div>
           {error && (
