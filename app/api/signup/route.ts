@@ -73,13 +73,15 @@ export async function POST(request: NextRequest) {
       )
     } catch (sheetsError: any) {
       console.error('Google Sheets API 오류:', sheetsError)
+      console.error('오류 상세:', JSON.stringify(sheetsError, null, 2))
       
       // 구체적인 오류 메시지
       let errorMessage = '데이터 저장 중 오류가 발생했습니다.'
+      const errorCode = sheetsError?.code || sheetsError?.response?.status
       
-      if (sheetsError?.code === 403) {
+      if (errorCode === 403) {
         errorMessage = 'Google Sheets 접근 권한이 없습니다. 공유 설정을 확인해주세요.'
-      } else if (sheetsError?.code === 404) {
+      } else if (errorCode === 404) {
         errorMessage = 'Google Sheets를 찾을 수 없습니다. 스프레드시트 ID를 확인해주세요.'
       } else if (sheetsError?.message) {
         errorMessage = sheetsError.message
@@ -88,8 +90,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { 
           error: errorMessage,
-          details: sheetsError?.message || String(sheetsError),
-          code: sheetsError?.code
+          details: sheetsError?.message || sheetsError?.response?.data?.error?.message || String(sheetsError),
+          code: errorCode,
+          fullError: process.env.NODE_ENV === 'development' ? String(sheetsError) : undefined
         },
         { status: 500 }
       )
