@@ -10,13 +10,13 @@ export default function Solution() {
       emoji: '🤖',
       number: '2',
       title: 'AI가 이벤트 자동 감지',
-      description: '울음, 움직임, 사람 등장 등 의미 있는 순간을 AI가 똑똑하게 찾아드려요. 놓치지 않아요!',
+      description: '울음, 움직임, 사람 등장, 위험한 자세 등 의미 있는 순간을 AI가 똑똑하게 찾아드려요. 놓치지 않아요!',
     },
     {
       emoji: '✨',
       number: '3',
       title: '요약 영상 자동 생성',
-      description: '하루 요약 영상과 이벤트별 클립이 자동으로 만들어져요. 바로 확인하시면 돼요!',
+      description: '하루 요약 영상과 이벤트별 클립이 자동으로 만들어져요. 위험 감지 시 즉시 알림도 보내드려요!',
     },
   ]
 

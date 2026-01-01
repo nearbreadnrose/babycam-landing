@@ -40,12 +40,15 @@ export default function Pricing() {
                   { icon: '📹', text: '하루 녹화 영상 요약' },
                   { icon: '🎬', text: '이벤트 자동 클립 생성' },
                   { icon: '✂️', text: '중요 장면 자동 편집' },
+                  { icon: '⚠️', text: '위험한 자세 실시간 감지 및 알림', highlight: true },
                   { icon: '💾', text: '영상 다운로드 가능' },
                   { icon: '🔒', text: '안전한 영상 보관' },
                 ].map((item, index) => (
-                  <li key={index} className="flex items-center gap-3">
+                  <li key={index} className={`flex items-center gap-3 ${item.highlight ? 'bg-red-50 border-2 border-red-200 rounded-lg p-3' : ''}`}>
                     <span className="text-2xl">{item.icon}</span>
-                    <span className="text-gray-700 text-lg">{item.text}</span>
+                    <span className={`text-lg ${item.highlight ? 'font-bold text-red-700' : 'text-gray-700'}`}>
+                      {item.text}
+                    </span>
                   </li>
                 ))}
               </ul>
