@@ -51,8 +51,13 @@ export async function POST(request: NextRequest) {
     )
   } catch (error) {
     console.error('Google Sheets 저장 오류:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error('상세 오류:', errorMessage)
     return NextResponse.json(
-      { error: '신청 처리 중 오류가 발생했습니다.' },
+      { 
+        error: '신청 처리 중 오류가 발생했습니다.',
+        details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
+      },
       { status: 500 }
     )
   }

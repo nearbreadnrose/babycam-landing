@@ -26,7 +26,10 @@ export default function Signup() {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.error || '신청 처리 중 오류가 발생했습니다.')
+        const errorMsg = data.details 
+          ? `${data.error}\n\n상세: ${data.details}` 
+          : data.error || '신청 처리 중 오류가 발생했습니다.'
+        throw new Error(errorMsg)
       }
 
       setSubmitted(true)
