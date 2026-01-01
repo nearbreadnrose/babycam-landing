@@ -5,6 +5,7 @@ import ValueProp from '@/components/ValueProp'
 import VideoExamples from '@/components/VideoExamples'
 import SimplePricing from '@/components/SimplePricing'
 import Signup from '@/components/Signup'
+import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <VideoExamples />
       <SimplePricing />
       <Signup />
+      <Footer />
     </main>
   )
 }
