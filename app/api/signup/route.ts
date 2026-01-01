@@ -71,9 +71,17 @@ export async function POST(request: NextRequest) {
 
     // Google Sheets에 데이터 추가
     try {
+      // 먼저 시트 정보 확인
+      const sheetMetadata = await sheets.spreadsheets.get({
+        spreadsheetId,
+      })
+      
+      // 첫 번째 시트 이름 가져오기
+      const sheetName = sheetMetadata.data.sheets?.[0]?.properties?.title || 'Sheet1'
+      
       await sheets.spreadsheets.values.append({
         spreadsheetId,
-        range: 'Sheet1!A:C', // A열: 이메일, B열: 전화번호, C열: 신청일시
+        range: `${sheetName}!A:C`, // A열: 이메일, B열: 전화번호, C열: 신청일시
         valueInputOption: 'USER_ENTERED',
         requestBody: {
           values: [[email, phone || '', dateStr]],
