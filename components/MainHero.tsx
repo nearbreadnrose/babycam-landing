@@ -1,6 +1,15 @@
+'use client'
+
 import Image from 'next/image'
 
 export default function MainHero() {
+  const scrollToSignup = () => {
+    const signupSection = document.getElementById('signup-section')
+    if (signupSection) {
+      signupSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   return (
     <section className="min-h-screen bg-gradient-to-b from-primary-50 via-warm-50 to-white flex items-center relative overflow-hidden">
       {/* 배경 장식 */}
@@ -44,7 +53,10 @@ export default function MainHero() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-bold py-5 px-10 rounded-full text-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2">
+              <button 
+                onClick={scrollToSignup}
+                className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-bold py-5 px-10 rounded-full text-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2"
+              >
                 <span>✨</span>
                 <span>무료로 시작하기</span>
               </button>

@@ -72,7 +72,7 @@ export default function Signup() {
   }
 
   return (
-    <section className="py-16 px-4 sm:py-24 bg-gradient-to-b from-white to-primary-50">
+    <section id="signup-section" className="py-16 px-4 sm:py-24 bg-gradient-to-b from-white to-primary-50">
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-10">
           <div className="inline-block mb-4">
@@ -126,21 +126,15 @@ export default function Signup() {
                 <span>베이비캠 종류</span>
                 <span className="text-primary-600">*</span>
               </label>
-              <select
+              <input
+                type="text"
                 id="babycamType"
                 value={babycamType}
                 onChange={(e) => setBabycamType(e.target.value)}
+                placeholder="예: 아이나비, 아이온, 아이시스 등"
                 required
-                className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-lg bg-white"
-              >
-                <option value="">베이비캠 종류를 선택해주세요</option>
-                <option value="아이나비">아이나비</option>
-                <option value="아이온">아이온</option>
-                <option value="아이시스">아이시스</option>
-                <option value="아이캠">아이캠</option>
-                <option value="아이뷰">아이뷰</option>
-                <option value="기타">기타</option>
-              </select>
+                className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-lg"
+              />
             </div>
             <div>
               <label htmlFor="inquiry" className="block text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
