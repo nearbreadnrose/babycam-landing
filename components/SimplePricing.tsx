@@ -45,7 +45,6 @@ export default function SimplePricing() {
                 지금 신청하시면 특별 가격으로 이용하실 수 있습니다
               </p>
             </div>
-          </div>
         </div>
       </div>
     </section>
