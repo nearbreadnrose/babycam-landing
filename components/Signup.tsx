@@ -6,6 +6,7 @@ export default function Signup() {
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [babycamType, setBabycamType] = useState('')
+  const [inquiry, setInquiry] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -21,7 +22,7 @@ export default function Signup() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, phone, babycamType }),
+        body: JSON.stringify({ email, phone, babycamType, inquiry }),
       })
 
       const data = await response.json()
@@ -140,6 +141,21 @@ export default function Signup() {
                 <option value="아이뷰">아이뷰</option>
                 <option value="기타">기타</option>
               </select>
+            </div>
+            <div>
+              <label htmlFor="inquiry" className="block text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                <span>💬</span>
+                <span>문의사항</span>
+                <span className="text-gray-400 text-xs">(선택사항)</span>
+              </label>
+              <textarea
+                id="inquiry"
+                value={inquiry}
+                onChange={(e) => setInquiry(e.target.value)}
+                placeholder="궁금한 점이나 요청사항이 있으시면 작성해주세요"
+                rows={4}
+                className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-lg resize-none"
+              />
             </div>
           </div>
           {error && (
