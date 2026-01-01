@@ -26,9 +26,18 @@ export default function Signup() {
       const data = await response.json()
 
       if (!response.ok) {
-        const errorMsg = data.details 
-          ? `${data.error}\n\n상세: ${data.details}` 
-          : data.error || '신청 처리 중 오류가 발생했습니다.'
+        let errorMsg = data.error || '신청 처리 중 오류가 발생했습니다.'
+        
+        if (data.details) {
+          errorMsg += `\n\n상세: ${data.details}`
+        }
+        
+        if (data.code === 403) {
+          errorMsg += '\n\n💡 Google Sheets 공유 설정을 확인해주세요.'
+        } else if (data.code === 404) {
+          errorMsg += '\n\n💡 스프레드시트 ID를 확인해주세요.'
+        }
+        
         throw new Error(errorMsg)
       }
 

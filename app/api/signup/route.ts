@@ -88,9 +88,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { 
           error: errorMessage,
-          details: process.env.NODE_ENV === 'development' 
-            ? sheetsError?.message || String(sheetsError)
-            : undefined
+          details: sheetsError?.message || String(sheetsError),
+          code: sheetsError?.code
         },
         { status: 500 }
       )
